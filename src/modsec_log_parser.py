@@ -20,16 +20,15 @@ import fileinput
 from log_entry import LogEntry
 
 class ModSecLogParser:
-    def __init__(self, watch = None): 
+    def __init__(self, watch = None):
         self.watch = watch
         self.logs = []
 
     def run(self):
 	for line in fileinput.input(self.watch):
-            l = LogEntry(string = line)
-            self.logs.append(l)
+            if line.strip().startswith("ModSecurity"):
+                l = LogEntry(string = line)
+                self.logs.append(l)
         return self.logs
 
         self.sumarize()
-
-
