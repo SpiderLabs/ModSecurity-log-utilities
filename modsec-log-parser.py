@@ -49,19 +49,17 @@ def main():
         z = ""
 	for xx in summary.split(","):
             if len(z) > 0:
-                z = z + str(delim) 
+                z = z + str(delim)
             z = z + str(i.__dict__[xx])
 
-	if i.id in ar:
-	    ar[z] = ar[str(i.id)] + 1
+	if z in ar:
+	    ar[z] = ar[z] + 1
 	else:
 	    ar[z] = 1
 
 
     for i in ar:
-	print str(i)
+	print str(i) + str(delim) + str(ar[i])
 
 if __name__=="__main__":
     main()
-
-

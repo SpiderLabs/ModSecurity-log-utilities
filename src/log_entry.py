@@ -42,7 +42,7 @@ class LogEntry:
         if string != None:
             a = re.findall(r"\[[^\]]+]", string)
             for i in a:
-                b = re.findall(r"\[([^ ]+) \"?(.*)\"?\]$", i)
+                b = re.findall(r"\[([^ ]+) \"?(.*)\".?\]$", i)
                 if len(b) == 0:
                     continue
                 b = b[0]
@@ -54,4 +54,3 @@ class LogEntry:
 
     def __repr__(self):
         return str(self.id) + ": " + str(self.msg)
-
