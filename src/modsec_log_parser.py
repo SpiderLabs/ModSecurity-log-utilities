@@ -15,21 +15,20 @@ directly using the email address security@modsecurity.org.
 
 
 """
-
+from . log_entry import LogEntry
 import fileinput
-from log_entry import LogEntry
+
 
 class ModSecLogParser:
-    def __init__(self, watch = None): 
+    def __init__(self, watch=None):
         self.watch = watch
         self.logs = []
 
     def run(self):
-	for line in fileinput.input(self.watch):
-            l = LogEntry(string = line)
-            self.logs.append(l)
+        for line in fileinput.input(self.watch):
+            log = LogEntry(string=line)
+            self.logs.append(log)
         return self.logs
-
         self.sumarize()
 
 
