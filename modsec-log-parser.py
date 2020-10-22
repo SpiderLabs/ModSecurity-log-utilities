@@ -17,7 +17,6 @@ directly using the email address security@modsecurity.org.
 
 """
 
-
 from src.modsec_log_parser import ModSecLogParser
 import argparse
 
@@ -33,35 +32,33 @@ def main():
     files = args.files
     summary = args.summary
     delim = args.delim
-    if len(files) == 0:
+    if files is None or len(files) == 0:
         files = "/dev/stdin"
-    if len(summary) == 0:
+    if summary is None or len(summary) == 0:
         summary = "id,msg"
 
     msclp = ModSecLogParser(files)
     data = msclp.run()
 
     ar = {}
-    if data == None:
+    if data is None:
         return
 
     for i in data:
         z = ""
-	for xx in summary.split(","):
+        for xx in summary.split(","):
             if len(z) > 0:
-                z = z + str(delim) 
+                z = z + str(delim)
             z = z + str(i.__dict__[xx])
 
-	if i.id in ar:
-	    ar[z] = ar[str(i.id)] + 1
-	else:
-	    ar[z] = 1
-
+        if i.id in ar:
+            ar[z] = ar[str(i.id)] + 1
+        else:
+            ar[z] = 1
 
     for i in ar:
-	print str(i)
+        print(str(i))
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     main()
-
-
