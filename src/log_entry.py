@@ -31,7 +31,7 @@ class LogEntry:
         self.data = None
         self.severity = None
         self.ver = None
-        self.maturiry = None
+        self.maturity = None
         self.accuracy = None
         self.tags = []
         self.hostname = None
@@ -40,7 +40,7 @@ class LogEntry:
 
 
         if string != None:
-            a = re.findall(r"\[[^\]]+]", string)
+            a = re.findall(r"\[[^\]]+\]", string)
             for i in a:
                 b = re.findall(r"\[([^ ]+) \"?(.*)\"?\]$", i)
                 if len(b) == 0:
