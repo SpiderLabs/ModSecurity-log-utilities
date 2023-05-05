@@ -40,14 +40,14 @@ def load(fname):
 
 
 def print_help():
-    print " "
-    print "Use: modsec-log-compare.py [options] <file a> <file b> "
-    print " "
+    print(" ")
+    print("Use: modsec-log-compare.py [options] <file a> <file b> ")
+    print(" ")
 
 
 def plog(a):
     for i in a:
-        print " - " + str(i)
+        print(" - " + str(i))
 
 def main():
     parser = argparse.ArgumentParser()
@@ -65,8 +65,8 @@ def main():
     contentFileA = load(fileA)
     contentFileB = load(fileB)
 
-    print "file A: " + fileA + ". Elements: " + str(len(contentFileA)) + "."
-    print "file B: " + fileB + ". Elements: " + str(len(contentFileB)) + "."
+    print("file A: " + fileA + ". Elements: " + str(len(contentFileA)) + ".")
+    print("file B: " + fileB + ". Elements: " + str(len(contentFileB)) + ".")
 
 
     for i in contentFileA:
@@ -84,15 +84,15 @@ def main():
                 diff = True
 
             if diff:
-                print "*** diff at: " + str(i)
-                print "In: " + str(fileA)
+                print("*** diff at: " + str(i))
+                print("In: " + str(fileA))
                 plog(objA)
-                print " "
-                print "In: " + str(fileB)
+                print(" ")
+                print("In: " + str(fileB))
                 plog(objB)
-                print " "
+                print(" ")
         else:
-            #print "B does not have: " + str(i)
+            #print("B does not have: " + str(i))
             pass
 
 

@@ -17,7 +17,7 @@ directly using the email address security@modsecurity.org.
 """
 
 import fileinput
-from log_entry import LogEntry
+from .log_entry import LogEntry
 
 class ModSecLogParser:
     def __init__(self, watch = None): 
@@ -25,9 +25,10 @@ class ModSecLogParser:
         self.logs = []
 
     def run(self):
-	for line in fileinput.input(self.watch):
+        for line in fileinput.input(self.watch):
             l = LogEntry(string = line)
-            self.logs.append(l)
+            if l.id is not None:
+                self.logs.append(l)
         return self.logs
 
         self.sumarize()
