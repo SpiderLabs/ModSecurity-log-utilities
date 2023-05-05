@@ -28,14 +28,13 @@ def main():
     parser.add_argument('--delim', type=str)
     parser.add_argument('files', nargs='*')
     args = parser.parse_args()
-    print(args.files, args.summary)
 
     files = args.files
     summary = args.summary
     delim = args.delim
     if len(files) == 0:
         files = "/dev/stdin"
-    if len(summary) == 0:
+    if not summary or len(summary) == 0:
         summary = "id,msg"
 
     msclp = ModSecLogParser(files)
@@ -49,7 +48,7 @@ def main():
         z = ""
         for xx in summary.split(","):
             if len(z) > 0:
-                z = z + str(delim) 
+                z = z + str(delim)
             z = z + str(i.__dict__[xx])
 
         if i.id in ar:
